@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senses Tracking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -53,7 +54,7 @@
             cursor: pointer;
         }
 
-        /* BANNER DE ENTREGA MORADO ESTILO SHEIN */
+        /* BANNER DE ENTREGA */
         .delivery-banner {
             margin-top: 15px;
             margin-bottom: 20px;
@@ -72,7 +73,7 @@
             font-size: 20px;
         }
         .delivery-date {
-            color: #9333ea; /* Color morado para destacar la fecha */
+            color: #9333ea;
             font-weight: 700;
         }
         .delivery-subtext {
@@ -90,7 +91,7 @@
         }
         .timeline {
             position: relative;
-            padding-left: 20px;
+            padding-left: 25px;
             border-left: 2px solid #f1f5f9;
             margin-top: 15px;
         }
@@ -101,6 +102,18 @@
         }
         .step.active {
             opacity: 1;
+        }
+        .step-icon {
+            position: absolute;
+            left: -32px;
+            top: 0;
+            font-size: 13px;
+        }
+        .step.active .step-icon {
+            color: #9333ea;
+        }
+        .step.completed .step-icon {
+            color: #16a34a;
         }
         .step-title {
             font-size: 14px;
@@ -115,6 +128,28 @@
             color: #ef4444;
             text-align: center;
             font-weight: 600;
+        }
+
+        /* BOTON WHATSAPP */
+        .whatsapp-box {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+        }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -144,7 +179,6 @@
         }
     };
 
-    // TUS 12 PASOS ORIGINALES EXACTOS
     const listaPasos = [
         "📦 Pedido confirmado",
         "📦 Preparando pedido",
@@ -190,18 +224,44 @@
         `;
 
         listaPasos.forEach((paso, index) => {
-            const esActivo = index <= info.pasoActual;
+            const esCompletado = index < info.pasoActual;
+            const esActivo = index === info.pasoActual;
             const fecha = info.fechas && info.fechas[index] ? info.fechas[index] : "";
 
+            let estadoClass = "";
+            let icono = `<i class="fa-solid fa-circle" style="font-size: 8px; color: #cbd5e1;"></i>`;
+
+            if (esCompletado) {
+                estadoClass = "active completed";
+                icono = `<i class="fa-solid fa-circle-check"></i>`; // CHULITO VERDE
+            } else if (esActivo) {
+                estadoClass = "active";
+                icono = `<i class="fa-solid fa-truck-fast"></i>`; // CAMIONCITO
+            }
+
             html += `
-                <div class="step ${esActivo ? 'active' : ''}">
+                <div class="step ${estadoClass}">
+                    <div class="step-icon">${icono}</div>
                     <div class="step-title">${paso}</div>
                     ${fecha ? `<div class="step-date">${fecha}</div>` : ''}
                 </div>
             `;
         });
 
-        html += `</div>`;
+        // MENSAJE DIRECTO A TU NUMERO DE WHATSAPP (3016878177)
+        const waMsg = encodeURIComponent(`Hola Senses, quiero consultar sobre mi pedido guía ${guia}.`);
+        const numeroWhatsApp = "573016878177";
+
+        html += `
+            </div>
+            <div class="whatsapp-box">
+                <a href="https://wa.me/${numeroWhatsApp}?text=${waMsg}" target="_blank" class="whatsapp-btn">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
+                    ¿Tienes dudas? Escríbenos a WhatsApp
+                </a>
+            </div>
+        `;
+
         contenedor.innerHTML = html;
     }
 </script>
