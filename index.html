@@ -3,343 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguimiento de Pedidos | Senses</title>
+    <title>Senses Tracking</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #f8f9fa;
-            color: #333;
+            margin: 0;
+            padding: 15px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
         }
-
-        .card {
+        .container {
             background: #ffffff;
-            width: 100%;
-            max-width: 500px;
-            padding: 30px;
+            padding: 20px;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            max-width: 420px;
+            width: 100%;
         }
-
         h2 {
             text-align: center;
-            margin-bottom: 24px;
-            color: #1a1a1a;
-            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
-
         .search-box {
             display: flex;
-            gap: 10px;
-            margin-bottom: 24px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
-
         input {
             flex: 1;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
+            padding: 12px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
         }
-
         input:focus {
-            border-color: #4f46e5;
+            border-color: #a855f7;
         }
-
         button {
-            padding: 12px 20px;
-            background-color: #4f46e5;
+            padding: 12px 18px;
+            background-color: #9333ea;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 10px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        button:hover {
-            background-color: #4338ca;
-        }
-
-        .result-container {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .client-info {
-            background: #f1f5f9;
-            padding: 12px;
-            border-radius: 8px;
+        /* BANNER DE ENTREGA MORADO ESTILO SHEIN */
+        .delivery-banner {
+            margin-top: 15px;
             margin-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+        .delivery-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
             font-weight: 600;
-            text-align: center;
-        }
-
-        .delivery-info {
-            margin-bottom: 20px;
-            padding: 12px;
-            border-left: 4px solid #4f46e5;
-            background-color: #fafafa;
-            font-size: 0.9rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            list-style: none;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 5px;
-            bottom: 5px;
-            width: 2px;
-            background: #e2e8f0;
-        }
-
-        .step {
-            position: relative;
-            margin-bottom: 20px;
-            color: #94a3b8;
-        }
-
-        .step.completed {
             color: #1e293b;
-            font-weight: 600;
         }
-
-        .step.active {
-            color: #4f46e5;
+        .delivery-icon {
+            font-size: 20px;
+        }
+        .delivery-date {
+            color: #9333ea; /* Color morado para destacar la fecha */
             font-weight: 700;
         }
-
-        .step::before {
-            content: '';
-            position: absolute;
-            left: -25px;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #cbd5e1;
-        }
-
-        .step.completed::before {
-            background: #22c55e;
-        }
-
-        .step.active::before {
-            background: #4f46e5;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
-        }
-
-        .step-date {
-            font-size: 0.8rem;
+        .delivery-subtext {
+            margin-top: 4px;
+            font-size: 13px;
             color: #64748b;
-            font-weight: normal;
+            padding-left: 28px;
         }
 
-        .error-message {
+        .cliente-info {
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #f1f5f9;
+            margin-top: 15px;
+        }
+        .step {
+            margin-bottom: 18px;
+            position: relative;
+            opacity: 0.35;
+        }
+        .step.active {
+            opacity: 1;
+        }
+        .step-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .step-date {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        .error {
             color: #ef4444;
             text-align: center;
-            display: none;
-            margin-top: 15px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2>Rastreo de Pedido Senses</h2>
-        <div class="search-box">
-            <input type="text" id="orderInput" placeholder="Ej: SNS-001" autocomplete="off">
-            <button onclick="buscarPedido()">Buscar</button>
-        </div>
-
-        <p id="errorMessage" class="error-message">Código de pedido no encontrado.</p>
-
-        <div id="resultContainer" class="result-container">
-            <div id="clientInfo" class="client-info"></div>
-            
-            <div class="delivery-info">
-                <p><strong>Fecha estimada de entrega:</strong> <span id="deliveryDate"></span></p>
-                <p><strong>Tiempo estimado:</strong> <span id="deliveryDays"></span></p>
-            </div>
-
-            <ul id="timeline" class="timeline"></ul>
-        </div>
+<div class="container">
+    <h2>Rastreo de Pedido 📦</h2>
+    <div class="search-box">
+        <input type="text" id="guiaInput" placeholder="Ingresa tu número de guía">
+        <button onclick="buscarRastreo()">Buscar</button>
     </div>
 
-    <script>
-        const pedidos = {
-            "SNS-001": {
-                cliente: "Cliente: Ana",
-                pasoActual: 3,
-                entregaFecha: "08/10 - 08/20",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "01/08/2026",
-                    1: "03/08/2026",
-                    2: "05/08/2026",
-                    3: "10/08/2026"
-                }
-            },
-            "SNS-002": {
-                cliente: "Cliente: María",
-                pasoActual: 2,
-                entregaFecha: "08/15 - 08/25",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "05/08/2026",
-                    1: "07/08/2026",
-                    2: "10/08/2026"
-                }
-            },
-            "SNS-003": {
-                cliente: "Cliente: Karla",
-                pasoActual: 1,
-                entregaFecha: "08/20 - 08/30",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "10/08/2026",
-                    1: "12/08/2026"
-                }
-            },
-            "SNS-004": {
-                cliente: "Cliente: Sofia",
-                pasoActual: 0,
-                entregaFecha: "08/25 - 09/05",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "12/08/2026"
-                }
-            },
-            "SNS-005": {
-                cliente: "Cliente: Valentina",
-                pasoActual: 3,
-                entregaFecha: "08/12 - 08/22",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "02/08/2026",
-                    1: "04/08/2026",
-                    2: "08/08/2026",
-                    3: "12/08/2026"
-                }
-            },
-            "SNS-006": {
-                cliente: "Cliente: Camil",
-                pasoActual: 2,
-                entregaFecha: "08/18 - 08/28",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "08/08/2026",
-                    1: "10/08/2026",
-                    2: "14/08/2026"
-                }
-            },
-            "SNS-007": {
-                cliente: "Cliente: Andrea",
-                pasoActual: 1,
-                entregaFecha: "08/22 - 09/02",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "11/08/2026",
-                    1: "13/08/2026"
-                }
-            },
-            "SNS-008": {
-                cliente: "Cliente: Lucía",
-                pasoActual: 0,
-                entregaFecha: "08/28 - 09/08",
-                entregaDias: "10-15 Días Laborables",
-                fechas: {
-                    0: "15/08/2026"
-                }
-            },
-            "SNS-009": {
-                cliente: "Cliente: Fabiola",
-                pasoActual: 2,
-                entregaFecha: "08/31 - 09/13",
-                entregaDias: "9-21 Días Laborables",
-                fechas: {
-                    0: "17/08/2026",
-                    1: "18/08/2026",
-                    2: "18/08/2026"
-                }
-            },
-            "SNS-010": {
-                cliente: "Cliente: Elisa",
-                pasoActual: 0,
-                entregaFecha: "09/05 - 09/18",
-                entregaDias: "10-19 Días Laborables",
-                fechas: {
-                    0: "29/08/2026"
-                }
-            }
-        };
+    <div id="resultado"></div>
+</div>
 
-        const listaPasos = [
-            "Pedido recibido y confirmado",
-            "En proceso de preparación / empaque",
-            "En tránsito con la transportadora",
-            "Entregado al cliente"
-        ];
-
-        function buscarPedido() {
-            const input = document.getElementById('orderInput').value.trim().toUpperCase();
-            const errorMessage = document.getElementById('errorMessage');
-            const resultContainer = document.getElementById('resultContainer');
-            const clientInfo = document.getElementById('clientInfo');
-            const deliveryDate = document.getElementById('deliveryDate');
-            const deliveryDays = document.getElementById('deliveryDays');
-            const timeline = document.getElementById('timeline');
-
-            if (pedidos[input]) {
-                const data = pedidos[input];
-                errorMessage.style.display = 'none';
-                
-                clientInfo.textContent = data.cliente;
-                deliveryDate.textContent = data.entregaFecha;
-                deliveryDays.textContent = data.entregaDias;
-
-                timeline.innerHTML = '';
-
-                listaPasos.forEach((paso, index) => {
-                    const li = document.createElement('li');
-                    li.className = 'step';
-
-                    if (index < data.pasoActual) {
-                        li.classList.add('completed');
-                    } else if (index === data.pasoActual) {
-                        li.classList.add('active');
-                    }
-
-                    let fechaTexto = data.fechas[index] ? ` <span class="step-date">(${data.fechas[index]})</span>` : '';
-                    li.innerHTML = `${paso}${fechaTexto}`;
-
-                    timeline.appendChild(li);
-                });
-
-                resultContainer.style.display = 'block';
-            } else {
-                resultContainer.style.display = 'none';
-                errorMessage.style.display = 'block';
+<script>
+    const datosRastreo = {
+        "SNS-004": {
+            cliente: "Cliente: Julia duran",
+            entregaFecha: "08/15 - 08/20",
+            entregaDias: "8-16 Días Laborables",
+            pasoActual: 1,
+            fechas: {
+                0: "28 Jul - 10:00 AM",
+                1: "29 Jul - 8:00 AM"
             }
         }
-    </script>
+    };
+
+    // TUS 12 PASOS ORIGINALES EXACTOS
+    const listaPasos = [
+        "📦 Pedido confirmado",
+        "📦 Preparando pedido",
+        "📦 Empacado",
+        "🚚 Recogido por transportadora",
+        "✈️ Salió de origen",
+        "✈️ Llegó al aeropuerto",
+        "🛂 En proceso de aduana",
+        "🇨🇴 Llegó a Colombia",
+        "🚚 Llegó a Medellín",
+        "🚚 En camino a senses store",
+        "🏫 Recibido en Senses store",
+        "📦 Entregado a MRW Venezuela"
+    ];
+
+    function buscarRastreo() {
+        const guia = document.getElementById("guiaInput").value.trim().toUpperCase();
+        const contenedor = document.getElementById("resultado");
+        contenedor.innerHTML = "";
+
+        if (!datosRastreo[guia]) {
+            contenedor.innerHTML = `<p class="error">Número de guía no encontrado.</p>`;
+            return;
+        }
+
+        const info = datosRastreo[guia];
+
+        let html = `
+            <div class="cliente-info">${info.cliente}</div>
+            
+            ${info.entregaFecha ? `
+                <div class="delivery-banner">
+                    <div class="delivery-header">
+                        <span class="delivery-icon">🚚</span>
+                        <span>Entrega</span>
+                        <span class="delivery-date">${info.entregaFecha}</span>
+                    </div>
+                    ${info.entregaDias ? `<div class="delivery-subtext">${info.entregaDias}</div>` : ''}
+                </div>
+            ` : ''}
+
+            <div class="timeline">
+        `;
+
+        listaPasos.forEach((paso, index) => {
+            const esActivo = index <= info.pasoActual;
+            const fecha = info.fechas && info.fechas[index] ? info.fechas[index] : "";
+
+            html += `
+                <div class="step ${esActivo ? 'active' : ''}">
+                    <div class="step-title">${paso}</div>
+                    ${fecha ? `<div class="step-date">${fecha}</div>` : ''}
+                </div>
+            `;
+        });
+
+        html += `</div>`;
+        contenedor.innerHTML = html;
+    }
+</script>
+
 </body>
 </html>
