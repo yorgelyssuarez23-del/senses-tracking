@@ -3,30 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senses Tracking</title>
+    <title>Senses Tracking - Rastreo de Pedido 💖</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #fae8ff 100%);
             margin: 0;
-            padding: 15px;
+            padding: 20px 15px;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
         }
         .container {
             background: #ffffff;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.12);
             max-width: 420px;
             width: 100%;
+            border: 2px solid #f472b6;
         }
+
+        /* BRANDING HEADER */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .brand-title {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #d946ef, #9333ea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+        .brand-subtitle {
+            font-size: 13px;
+            color: #c084fc;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
         h2 {
             text-align: center;
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 20px;
+            color: #7e22ce;
+            margin-bottom: 18px;
+            font-size: 18px;
+            font-weight: 700;
         }
         .search-box {
             display: flex;
@@ -35,64 +60,82 @@
         }
         input {
             flex: 1;
-            padding: 12px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 10px;
+            padding: 12px 14px;
+            border: 2px solid #fbcfe8;
+            border-radius: 12px;
             font-size: 14px;
             outline: none;
+            background-color: #fff5f8;
+            color: #475569;
+            transition: all 0.3s ease;
         }
         input:focus {
-            border-color: #a855f7;
+            border-color: #d946ef;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.15);
         }
         button {
             padding: 12px 18px;
-            background-color: #9333ea;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            transition: transform 0.2s ease;
+        }
+        button:hover {
+            transform: scale(1.03);
         }
 
         /* BANNER DE ENTREGA */
         .delivery-banner {
             margin-top: 15px;
             margin-bottom: 20px;
-            border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 15px;
+            border-bottom: 2px dashed #fbcfe8;
+            padding: 14px;
+            background: #faf5ff;
+            border-radius: 14px;
         }
         .delivery-header {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1e293b;
+            font-size: 15px;
+            font-weight: 700;
+            color: #6b21a8;
         }
         .delivery-icon {
             font-size: 20px;
         }
         .delivery-date {
-            color: #9333ea;
-            font-weight: 700;
+            color: #ec4899;
+            font-weight: 800;
         }
         .delivery-subtext {
             margin-top: 4px;
-            font-size: 13px;
-            color: #64748b;
+            font-size: 12px;
+            color: #a21caf;
             padding-left: 28px;
+            font-weight: 500;
         }
 
         .cliente-info {
-            font-size: 13px;
-            font-weight: 600;
-            color: #64748b;
-            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #9333ea;
+            margin-bottom: 12px;
+            background: #fdf4ff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            display: inline-block;
+            border-left: 4px solid #d946ef;
         }
         .timeline {
             position: relative;
             padding-left: 25px;
-            border-left: 2px solid #f1f5f9;
+            border-left: 3px solid #fbcfe8;
             margin-top: 15px;
         }
         .step {
@@ -105,36 +148,46 @@
         }
         .step-icon {
             position: absolute;
-            left: -32px;
+            left: -33px;
             top: 0;
-            font-size: 13px;
+            font-size: 14px;
+            background: white;
+            border-radius: 50%;
         }
         .step.active .step-icon {
-            color: #9333ea;
+            color: #d946ef;
         }
         .step.completed .step-icon {
-            color: #16a34a;
+            color: #22c55e;
         }
         .step-title {
             font-size: 14px;
             font-weight: 600;
-            color: #0f172a;
+            color: #334155;
+        }
+        .step.active .step-title {
+            color: #7e22ce;
+            font-weight: 700;
         }
         .step-date {
             font-size: 11px;
-            color: #94a3b8;
+            color: #c084fc;
+            font-weight: 600;
         }
         .error {
             color: #ef4444;
             text-align: center;
             font-weight: 600;
+            background: #fef2f2;
+            padding: 10px;
+            border-radius: 10px;
         }
 
         /* BOTON WHATSAPP */
         .whatsapp-box {
             margin-top: 20px;
             padding-top: 15px;
-            border-top: 1px solid #f1f5f9;
+            border-top: 2px dashed #fbcfe8;
             text-align: center;
         }
         .whatsapp-btn {
@@ -143,23 +196,33 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            padding: 12px;
-            background-color: #25d366;
+            padding: 13px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
             color: white;
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
-            border-radius: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s ease;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Rastreo de Pedido 📦</h2>
+    <div class="brand-header">
+        <h1 class="brand-title">SENSES TRACKING ✨</h1>
+        <div class="brand-subtitle">Rastreo de envíos 🛍️💖</div>
+    </div>
+
+    <h2>Rastreo de Pedido 📦✨</h2>
     <div class="search-box">
-        <input type="text" id="guiaInput" placeholder="Ingresa tu número de guía">
-        <button onclick="buscarRastreo()">Buscar</button>
+        <input type="text" id="guiaInput" placeholder="Ingresa tu número de guía 🔍">
+        <button onclick="buscarRastreo()">Buscar 💖</button>
     </div>
 
     <div id="resultado"></div>
@@ -180,18 +243,18 @@
     };
 
     const listaPasos = [
-        "📦 Pedido confirmado",
-        "📦 Preparando pedido",
-        "📦 Empacado",
-        "🚚 Recogido por transportadora",
-        "✈️ Salió de origen",
-        "✈️ Llegó al aeropuerto",
-        "🛂 En proceso de aduana",
-        "🇨🇴 Llegó a Colombia",
-        "🚚 Llegó a Medellín",
-        "🚚 En camino a senses store",
-        "🏫 Recibido en Senses store",
-        "📦 Entregado a MRW Venezuela"
+        "📦 Pedido confirmado ✨",
+        "📦 Preparando pedido 🎀",
+        "📦 Empacado 🎁",
+        "🚚 Recogido por transportadora 🚛",
+        "✈️ Salió de origen 🛫",
+        "✈️ Llegó al aeropuerto 🛬",
+        "🛂 En proceso de aduana 🛃",
+        "🇨🇴 Llegó a Colombia 💛💙❤️",
+        "🚚 Llegó a Medellín 🏙️",
+        "🚚 En camino a senses store 🛍️",
+        "🏫 Recibido en Senses store 🏢",
+        "📦 Entregado a MRW Venezuela 🇻🇪"
     ];
 
     function buscarRastreo() {
@@ -200,23 +263,23 @@
         contenedor.innerHTML = "";
 
         if (!datosRastreo[guia]) {
-            contenedor.innerHTML = `<p class="error">Número de guía no encontrado.</p>`;
+            contenedor.innerHTML = `<p class="error">Número de guía no encontrado ❌</p>`;
             return;
         }
 
         const info = datosRastreo[guia];
 
         let html = `
-            <div class="cliente-info">${info.cliente}</div>
+            <div class="cliente-info">👤 ${info.cliente}</div>
             
             ${info.entregaFecha ? `
                 <div class="delivery-banner">
                     <div class="delivery-header">
                         <span class="delivery-icon">🚚</span>
-                        <span>Entrega</span>
+                        <span>Entrega estimada:</span>
                         <span class="delivery-date">${info.entregaFecha}</span>
                     </div>
-                    ${info.entregaDias ? `<div class="delivery-subtext">${info.entregaDias}</div>` : ''}
+                    ${info.entregaDias ? `<div class="delivery-subtext">⏳ ${info.entregaDias}</div>` : ''}
                 </div>
             ` : ''}
 
@@ -229,27 +292,26 @@
             const fecha = info.fechas && info.fechas[index] ? info.fechas[index] : "";
 
             let estadoClass = "";
-            let icono = `<i class="fa-solid fa-circle" style="font-size: 8px; color: #cbd5e1;"></i>`;
+            let icono = `<i class="fa-solid fa-circle" style="font-size: 8px; color: #f472b6;"></i>`;
 
             if (esCompletado) {
                 estadoClass = "active completed";
-                icono = `<i class="fa-solid fa-circle-check"></i>`; // CHULITO VERDE
+                icono = `<i class="fa-solid fa-circle-check"></i>`;
             } else if (esActivo) {
                 estadoClass = "active";
-                icono = `<i class="fa-solid fa-truck-fast"></i>`; // CAMIONCITO
+                icono = `<i class="fa-solid fa-truck-fast"></i>`;
             }
 
             html += `
                 <div class="step ${estadoClass}">
                     <div class="step-icon">${icono}</div>
                     <div class="step-title">${paso}</div>
-                    ${fecha ? `<div class="step-date">${fecha}</div>` : ''}
+                    ${fecha ? `<div class="step-date">🕒 ${fecha}</div>` : ''}
                 </div>
             `;
         });
 
-        // MENSAJE DIRECTO A TU NUMERO DE WHATSAPP (3016878177)
-        const waMsg = encodeURIComponent(`Hola Senses, quiero consultar sobre mi pedido guía ${guia}.`);
+        const waMsg = encodeURIComponent(`Hola Senses 💖, quiero consultar sobre mi pedido guía ${guia}.`);
         const numeroWhatsApp = "573016878177";
 
         html += `
@@ -257,7 +319,7 @@
             <div class="whatsapp-box">
                 <a href="https://wa.me/${numeroWhatsApp}?text=${waMsg}" target="_blank" class="whatsapp-btn">
                     <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
-                    ¿Tienes dudas? Escríbenos a WhatsApp
+                    ¿Tienes dudas? Escríbenos a WhatsApp 💬
                 </a>
             </div>
         `;
