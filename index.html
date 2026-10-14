@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senses Tracking - Rastreo de Pedido 💖</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Senses Tracking – Rastreo de Pedido 💖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #fae8ff 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
             margin: 0;
             padding: 20px 15px;
             display: flex;
@@ -17,487 +17,328 @@
         }
         .container {
             background: #ffffff;
-            padding: 24px;
+            padding: 25px 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.12);
-            max-width: 420px;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
             width: 100%;
-            border: 2px solid #f472b6;
+            max-width: 450px;
+            box-sizing: border-box;
+            border: 2px solid #f8bbd0;
         }
-
-        /* BRANDING HEADER */
-        .brand-header {
+        h1 {
+            color: #d81b60;
             text-align: center;
-            margin-bottom: 24px;
+            font-size: 24px;
+            margin-bottom: 5px;
         }
-        .brand-title {
-            font-size: 26px;
-            font-weight: 800;
-            background: linear-gradient(90deg, #d946ef, #9333ea, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-            letter-spacing: -0.5px;
-        }
-        .brand-subtitle {
+        .subtitle {
+            text-align: center;
+            color: #888;
             font-size: 13px;
-            color: #a21caf;
-            font-weight: 600;
-            margin-top: 6px;
-        }
-
-        .search-title {
-            text-align: center;
-            color: #7e22ce;
-            margin-bottom: 14px;
-            font-size: 16px;
-            font-weight: 700;
+            margin-bottom: 20px;
         }
         .search-box {
             display: flex;
             gap: 8px;
             margin-bottom: 20px;
         }
-        input {
+        input[type="text"] {
             flex: 1;
-            padding: 12px 14px;
-            border: 2px solid #fbcfe8;
+            padding: 12px 15px;
+            border: 2px solid #f48fb1;
             border-radius: 12px;
-            font-size: 14px;
             outline: none;
-            background-color: #fff5f8;
-            color: #475569;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            transition: all 0.3s;
         }
-        input:focus {
-            border-color: #d946ef;
-            background-color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.15);
+        input[type="text"]:focus {
+            border-color: #d81b60;
+            box-shadow: 0 0 8px rgba(216, 27, 96, 0.2);
         }
         button {
-            padding: 12px 18px;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            background: linear-gradient(45deg, #ec407a, #d81b60);
             color: white;
             border: none;
+            padding: 12px 18px;
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s;
         }
-        button:hover {
-            transform: scale(1.03);
+        button:active {
+            transform: scale(0.95);
         }
-
-        /* BANNER DE ENTREGA */
-        .delivery-banner {
-            margin-top: 15px;
-            margin-bottom: 20px;
-            border-bottom: 2px dashed #fbcfe8;
-            padding: 14px;
-            background: #faf5ff;
-            border-radius: 14px;
+        .card {
+            background: #fff5f8;
+            border-radius: 15px;
+            padding: 18px;
+            border: 1px solid #f8bbd0;
+            display: none;
         }
-        .delivery-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .client-info {
+            font-weight: bold;
+            color: #ad1457;
             font-size: 15px;
-            font-weight: 700;
-            color: #6b21a8;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #f48fb1;
+            padding-bottom: 8px;
         }
-        .delivery-icon {
-            font-size: 20px;
-        }
-        .delivery-date {
-            color: #ec4899;
-            font-weight: 800;
-        }
-        .delivery-subtext {
-            margin-top: 4px;
-            font-size: 12px;
-            color: #a21caf;
-            padding-left: 28px;
-            font-weight: 500;
-        }
-
-        .cliente-info {
-            font-size: 14px;
-            font-weight: 700;
-            color: #9333ea;
-            margin-bottom: 12px;
-            background: #fdf4ff;
-            padding: 8px 12px;
-            border-radius: 10px;
-            display: inline-block;
-            border-left: 4px solid #d946ef;
+        .delivery-info {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
         .timeline {
             position: relative;
-            padding-left: 25px;
-            border-left: 3px solid #fbcfe8;
+            padding-left: 20px;
             margin-top: 15px;
         }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: #f8bbd0;
+        }
         .step {
-            margin-bottom: 18px;
             position: relative;
-            opacity: 0.35;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #aaa;
         }
         .step.active {
-            opacity: 1;
+            color: #d81b60;
+            font-weight: bold;
         }
-        .step-icon {
+        .step.completed {
+            color: #43a047;
+        }
+        .step::before {
+            content: '●';
             position: absolute;
-            left: -33px;
-            top: 0;
-            font-size: 14px;
+            left: -19px;
+            top: -1px;
+            font-size: 12px;
             background: white;
-            border-radius: 50%;
         }
-        .step.active .step-icon {
-            color: #d946ef;
+        .step.active::before {
+            content: '💖';
+            left: -23px;
+            top: -2px;
+            font-size: 11px;
         }
-        .step.completed .step-icon {
-            color: #22c55e;
-        }
-        .step-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #334155;
-        }
-        .step.active .step-title {
-            color: #7e22ce;
-            font-weight: 700;
+        .step.completed::before {
+            content: '✓';
+            left: -21px;
+            color: #43a047;
+            font-weight: bold;
         }
         .step-date {
             font-size: 11px;
-            color: #c084fc;
-            font-weight: 600;
+            color: #888;
+            font-weight: normal;
+            margin-top: 2px;
         }
-        .error {
-            color: #ef4444;
+        .error-msg {
+            color: #e53935;
             text-align: center;
-            font-weight: 600;
-            background: #fef2f2;
+            font-weight: bold;
+            background: #ffebee;
             padding: 10px;
             border-radius: 10px;
-        }
-
-        /* BOTON WHATSAPP */
-        .whatsapp-box {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 2px dashed #fbcfe8;
-            text-align: center;
-        }
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 13px;
-            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-            transition: transform 0.2s ease;
-        }
-        .whatsapp-btn:hover {
-            transform: scale(1.02);
+            display: none;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="brand-header">
-        <h1 class="brand-title">Senses Tracking ✨</h1>
-        <div class="brand-subtitle">Sigue el viaje de tus favoritos en tiempo real 🛍️✨</div>
-    </div>
+    <h1>Senses Tracking ✨</h1>
+    <p class="subtitle">Sigue el viaje de tus favoritos en tiempo real 🛍️✨</p>
 
-    <div class="search-title">Rastrea tu pedido 📦</div>
     <div class="search-box">
-        <input type="text" id="guiaInput" placeholder="Ingresa tu número de guía 🔍">
-        <button onclick="buscarRastreo()">Buscar 💖</button>
+        <input type="text" id="inputGuia" placeholder="Ej: SNS-020" onkeypress="if(event.key==='Enter') buscarGuia()">
+        <button onclick="buscarGuia()">Buscar 💖</button>
     </div>
 
-    <div id="resultado"></div>
+    <div id="errorMsg" class="error-msg">Número de guía no encontrado ❌</div>
+
+    <div id="cardResultado" class="card">
+        <div id="clienteNombre" class="client-info"></div>
+        <div class="delivery-info">
+            📅 <b>Entrega estimada:</b> <span id="entregaFecha"></span><br>
+            ⏱️ <b>Tiempo:</b> <span id="entregaDias"></span>
+        </div>
+        <div class="timeline" id="timelinePasos"></div>
+    </div>
 </div>
 
 <script>
-    const const datosRastreo = {
+    const datosRastreo = {
         "SNS-004": {
             cliente: "Cliente: Julia duran",
             entregaFecha: "08/15 - 08/20",
             entregaDias: "8-16 Días Laborables",
             pasoActual: 1,
-            fechas: {
-                0: "28 Jul - 10:00 AM",
-                1: "29 Jul - 8:00 AM"
-            }
+            fechas: { 0: "28 Jul - 10:00 AM", 1: "29 Jul - 8:00 AM" }
         },
         "SNS-006": {
             cliente: "Cliente: Jeraldine Durán",
             entregaFecha: "08/20 - 09/01",
             entregaDias: "10-18 Días Laborables",
             pasoActual: 8,
-            fechas: {
-                0: "08/08/2026",
-                1: "08/09/2026",
-                2: "08/10/2026",
-                3: "08/11/2026",
-                4: "08/13/2026",
-                5: "08/14/2026",
-                6: "17/08/2026",
-                7: "23/08/2026",
-                8: "23/08/2026"
-            }
+            fechas: { 0: "08/08/2026", 1: "08/09/2026", 2: "08/10/2026", 3: "08/11/2026", 4: "08/13/2026", 5: "08/14/2026", 6: "17/08/2026", 7: "23/08/2026", 8: "23/08/2026" }
         },
         "SNS-007": {
             cliente: "Cliente: Fabiola",
             entregaFecha: "25/08 - 10/09",
             entregaDias: "9-21 Días Laborables",
             pasoActual: 7,
-            fechas: {
-                0: "08/11/2026",
-                1: "08/11/2026",
-                2: "08/12/2026",
-                3: "13/08/2026",
-                4: "14/08/2026",
-                5: "17/08/2026",
-                6: "18/08/2026",
-                7: "23/08/2026"
-            }
+            fechas: { 0: "08/11/2026", 1: "08/11/2026", 2: "08/12/2026", 3: "13/08/2026", 4: "14/08/2026", 5: "17/08/2026", 6: "18/08/2026", 7: "23/08/2026" }
         },
         "SNS-008": {
             cliente: "Cliente: Missel",
             entregaFecha: "27/08 - 12/09",
             entregaDias: "9-21 Días Laborables",
             pasoActual: 8,
-            fechas: {
-                0: "13/08/2026",
-                1: "14/08/2026",
-                2: "14/08/2026",
-                3: "14/08/2026",
-                4: "15/08/2026",
-                5: "17/08/2026",
-                6: "18/08/2026",
-                7: "23/08/2026",
-                8: "23/08/2026"
-            }
+            fechas: { 0: "13/08/2026", 1: "14/08/2026", 2: "14/08/2026", 3: "14/08/2026", 4: "15/08/2026", 5: "17/08/2026", 6: "18/08/2026", 7: "23/08/2026", 8: "23/08/2026" }
         },
         "SNS-009": {
             cliente: "Cliente: Fabiola",
             entregaFecha: "08/31 - 09/13",
             entregaDias: "9-21 Días Laborables",
             pasoActual: 3,
-            fechas: {
-                0: "17/08/2026",
-                1: "18/08/2026",
-                2: "18/08/2026",
-                3: "23/08/2026"
-            }
+            fechas: { 0: "17/08/2026", 1: "18/08/2026", 2: "18/08/2026", 3: "23/08/2026" }
         },
         "SNS-010": {
             cliente: "Cliente: Elisa",
             entregaFecha: "09/05 - 09/18",
             entregaDias: "10-19 Días Laborables",
             pasoActual: 3,
-            fechas: {
-                0: "29/08/2026",
-                1: "23/08/2026",
-                2: "23/08/2026",
-                3: "23/08/2026"
-            }
+            fechas: { 0: "29/08/2026", 1: "23/08/2026", 2: "23/08/2026", 3: "23/08/2026" }
         },
         "SNS-011": {
             cliente: "Cliente: Annerys",
             entregaFecha: "09/09 - 09/28",
             entregaDias: "10-23 Días Hábiles",
             pasoActual: 2,
-            fechas: {
-                0: "26/08/2026",
-                1: "27/08/2026",
-                2: "28/08/2026"
-            }
+            fechas: { 0: "26/08/2026", 1: "27/08/2026", 2: "28/08/2026" }
         },
         "SNS-012": {
             cliente: "Cliente: Sulianny Ortiz",
             entregaFecha: "09/18 - 10/01",
             entregaDias: "10-19 Días Hábiles",
             pasoActual: 1,
-            fechas: {
-                0: "04/09/2026",
-                1: "05/09/2026"
-            }
+            fechas: { 0: "04/09/2026", 1: "05/09/2026" }
         },
         "SNS-013": {
             cliente: "Cliente: Fabiola",
             entregaFecha: "09/23 - 10/06",
             entregaDias: "10-19 Días Hábiles",
             pasoActual: 1,
-            fechas: {
-                0: "08/09/2026",
-                1: "09/09/2026"
-            }
+            fechas: { 0: "08/09/2026", 1: "09/09/2026" }
         },
         "SNS-014": {
             cliente: "Cliente: Elisa",
             entregaFecha: "09/25 - 10/07",
             entregaDias: "10-19 Días Hábiles",
             pasoActual: 1,
-            fechas: {
-                0: "08/09/2026",
-                1: "09/09/2026"
-            }
+            fechas: { 0: "08/09/2026", 1: "09/09/2026" }
         },
         "SNS-015": {
             cliente: "Cliente: Kelly (14 artículos)",
             entregaFecha: "09/27 - 10/08",
             entregaDias: "10-19 Días Laborales",
             pasoActual: 1,
-            fechas: {
-                0: "12/09/2026",
-                1: "13/09/2026"
-            }
+            fechas: { 0: "12/09/2026", 1: "13/09/2026" }
         },
         "SNS-016": {
             cliente: "Cliente: Krisbel (11 artículos)",
             entregaFecha: "09/30 - 10/12",
             entregaDias: "9-17 Días Hábiles",
             pasoActual: 1,
-            fechas: {
-                0: "17/09/2026",
-                1: "18/09/2026"
-            }
+            fechas: { 0: "17/09/2026", 1: "18/09/2026" }
         },
         "SNS-017": {
             cliente: "Cliente: Fabiola (16 artículos)",
             entregaFecha: "09/30 - 10/12",
             entregaDias: "9-17 Días Hábiles",
             pasoActual: 1,
-            fechas: {
-                0: "17/09/2026",
-                1: "18/09/2026"
-            }
+            fechas: { 0: "17/09/2026", 1: "18/09/2026" }
         },
         "SNS-018": {
             cliente: "Cliente: Yamine Palmero (5 artículos)",
             entregaFecha: "10/08 - 10/26",
             entregaDias: "9-21 Días Hábiles",
             pasoActual: 9,
-            fechas: {
-                0: "26/09/2026",
-                1: "27/09/2026",
-                2: "27/09/2026",
-                3: "28/09/2026",
-                4: "28/09/2026",
-                5: "01/10/2026",
-                6: "03/10/2026",
-                7: "04/10/2026",
-                8: "07/10/2026",
-                9: "10/10/2026"
-            }
+            fechas: { 0: "26/09/2026", 1: "27/09/2026", 2: "27/09/2026", 3: "28/09/2026", 4: "28/09/2026", 5: "01/10/2026", 6: "03/10/2026", 7: "04/10/2026", 8: "07/10/2026", 9: "10/10/2026" }
         },
         "SNS-020": {
             cliente: "Cliente: Marilyn Polanco (13 artículos)",
             entregaFecha: "10/22 - 11/09",
             entregaDias: "9-21 Días Hábiles",
             pasoActual: 2,
-            fechas: {
-                0: "12/10/2026",
-                1: "13/10/2026",
-                2: "14/10/2026"
-            }
+            fechas: { 0: "12/10/2026", 1: "13/10/2026", 2: "14/10/2026" }
         }
     };
+
     const listaPasos = [
         "📦 Pedido confirmado ✨",
         "📦 Preparando pedido 🎀",
         "📦 Empacado 🎁",
         "🚚 Recogido por transportadora 🚛",
         "✈️ Salió de origen 🛫",
-        "✈️ Llegó al aeropuerto 🛬",
-        "🛂 En proceso de aduana 🛃",
-        "🇨🇴 Llegó a Colombia 💛💙❤️",
-        "🚚 Llegó a Medellín 🏙️",
-        "🚚 En camino a senses store 🛍️",
-        "🏫 Recibido en Senses store 🏢",
-        "📦 Entregado a MRW Venezuela 🇻🇪"
+        "🛬 Llegó a país de destino 🇨🇴",
+        "🛃 En proceso aduanal 📋",
+        "📦 En centro de distribución local 🚚",
+        "🛵 En camino a tu dirección 🏠",
+        "🎉 Pedido entregado ✨"
     ];
 
-    function buscarRastreo() {
-        const guia = document.getElementById("guiaInput").value.trim().toUpperCase();
-        const contenedor = document.getElementById("resultado");
-        contenedor.innerHTML = "";
+    function buscarGuia() {
+        const input = document.getElementById("inputGuia").value.trim().toUpperCase();
+        const card = document.getElementById("cardResultado");
+        const error = document.getElementById("errorMsg");
 
-        if (!datosRastreo[guia]) {
-            contenedor.innerHTML = `<p class="error">Número de guía no encontrado ❌</p>`;
+        card.style.display = "none";
+        error.style.display = "none";
+
+        if (!input || !datosRastreo[input]) {
+            error.style.display = "block";
             return;
         }
 
-        const info = datosRastreo[guia];
+        const datos = datosRastreo[input];
+        document.getElementById("clienteNombre").innerText = datos.cliente;
+        document.getElementById("entregaFecha").innerText = datos.entregaFecha;
+        document.getElementById("entregaDias").innerText = datos.entregaDias;
 
-        let html = `
-            <div class="cliente-info">👤 ${info.cliente}</div>
-            
-            ${info.entregaFecha ? `
-                <div class="delivery-banner">
-                    <div class="delivery-header">
-                        <span class="delivery-icon">🚚</span>
-                        <span>Entrega estimada:</span>
-                        <span class="delivery-date">${info.entregaFecha}</span>
-                    </div>
-                    ${info.entregaDias ? `<div class="delivery-subtext">⏳ ${info.entregaDias}</div>` : ''}
-                </div>
-            ` : ''}
+        const timeline = document.getElementById("timelinePasos");
+        timeline.innerHTML = "";
 
-            <div class="timeline">
-        `;
+        listaPasos.forEach((pasoText, index) => {
+            const stepDiv = document.createElement("div");
+            stepDiv.className = "step";
 
-        listaPasos.forEach((paso, index) => {
-            const esCompletado = index < info.pasoActual;
-            const esActivo = index === info.pasoActual;
-            const fecha = info.fechas && info.fechas[index] ? info.fechas[index] : "";
-
-            let estadoClass = "";
-            let icono = `<i class="fa-solid fa-circle" style="font-size: 8px; color: #f472b6;"></i>`;
-
-            if (esCompletado) {
-                estadoClass = "active completed";
-                icono = `<i class="fa-solid fa-circle-check"></i>`;
-            } else if (esActivo) {
-                estadoClass = "active";
-                icono = `<i class="fa-solid fa-truck-fast"></i>`;
+            if (index < datos.pasoActual) {
+                stepDiv.classList.add("completed");
+            } else if (index === datos.pasoActual) {
+                stepDiv.classList.add("active");
             }
 
-            html += `
-                <div class="step ${estadoClass}">
-                    <div class="step-icon">${icono}</div>
-                    <div class="step-title">${paso}</div>
-                    ${fecha ? `<div class="step-date">🕒 ${fecha}</div>` : ''}
-                </div>
-            `;
+            let htmlContent = `<div>${pasoText}</div>`;
+            if (datos.fechas && datos.fechas[index]) {
+                htmlContent += `<div class="step-date">${datos.fechas[index]}</div>`;
+            }
+
+            stepDiv.innerHTML = htmlContent;
+            timeline.appendChild(stepDiv);
         });
 
-        const waMsg = encodeURIComponent(`Hola Senses 💖, quiero consultar sobre mi pedido guía ${guia}.`);
-        const numeroWhatsApp = "573016878177";
-
-        html += `
-            </div>
-            <div class="whatsapp-box">
-                <a href="https://wa.me/${numeroWhatsApp}?text=${waMsg}" target="_blank" class="whatsapp-btn">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
-                    ¿Tienes dudas? Escríbenos a WhatsApp 💬
-                </a>
-            </div>
-        `;
-
-        contenedor.innerHTML = html;
+        card.style.display = "block";
     }
 </script>
 
