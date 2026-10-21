@@ -151,6 +151,12 @@
             border-radius: 10px;
             display: none;
         }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
         .whatsapp-btn {
             display: flex;
             align-items: center;
@@ -163,7 +169,6 @@
             font-size: 14px;
             padding: 12px 15px;
             border-radius: 12px;
-            margin-top: 15px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
             transition: transform 0.2s, background-color 0.2s;
@@ -171,6 +176,80 @@
         .whatsapp-btn:active {
             transform: scale(0.95);
             background-color: #1eaa55;
+        }
+        .tiktok-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #000000;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .tiktok-btn:active {
+            transform: scale(0.95);
+        }
+        .info-box {
+            background: #fff0f5;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px dashed #f48fb1;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .info-box h3 {
+            margin: 0 0 8px 0;
+            color: #d81b60;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* EFECTO DE LUCES DE COLORES BRILLANTES Y ANIMADAS */
+        .animated-rainbow-text {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            margin-top: 22px;
+            line-height: 1.6;
+            background: linear-gradient(
+                90deg, 
+                #ff007f, 
+                #7b00ff, 
+                #00d4ff, 
+                #00ff87, 
+                #ffaa00, 
+                #ff007f
+            );
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowLights 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbowLights {
+            0% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 5px rgba(255, 0, 127, 0.6));
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.8));
+            }
+            100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 5px rgba(255, 0, 127, 0.6));
+            }
         }
     </style>
 </head>
@@ -196,9 +275,27 @@
         <div class="timeline" id="timelinePasos"></div>
     </div>
 
-    <a href="https://wa.me/573016878177?text=Hola,%20tengo%20una%20pregunta%20sobre%20mi%20pedido%20de%20Senses%20Store" target="_blank" class="whatsapp-btn">
-        <i class="fab fa-whatsapp" style="font-size: 18px;"></i> ¿Alguna pregunta? Escríbenos a WhatsApp
-    </a>
+    <div class="action-buttons">
+        <a href="https://wa.me/573016878177?text=Hola,%20tengo%20una%20pregunta%20sobre%20mi%20pedido%20de%20Senses%20Store" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp" style="font-size: 18px;"></i> ¿Alguna pregunta? Escríbenos a WhatsApp
+        </a>
+
+        <a href="https://www.tiktok.com/@imyorgis?_r=1&_t=ZN-9AjhePSTOti" target="_blank" class="tiktok-btn">
+            <i class="fab fa-tiktok" style="font-size: 18px;"></i> Síguenos en TikTok @imyorgis
+        </a>
+    </div>
+
+    <div class="info-box">
+        <h3>📍 Información Importante</h3>
+        📍 Entregas personales y envíos desde Medellín.<br>
+        📦 Los tiempos son estimados en días hábiles.<br>
+        ✨ Recibirás una notificación cuando tu pedido llegue a la tienda.
+    </div>
+
+    <div class="animated-rainbow-text">
+        ✨💖 ¡Tu compra está en las mejores manos! 💅🏼🛍️<br>
+        🌸✨ ¡Gracias por confiar en nosotros! 💕👑
+    </div>
 </div>
 
 <script>
