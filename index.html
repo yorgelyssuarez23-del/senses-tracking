@@ -151,6 +151,27 @@
             border-radius: 10px;
             display: none;
         }
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .whatsapp-btn:active {
+            transform: scale(0.95);
+            background-color: #1eaa55;
+        }
     </style>
 </head>
 <body>
@@ -174,6 +195,10 @@
         </div>
         <div class="timeline" id="timelinePasos"></div>
     </div>
+
+    <a href="https://wa.me/573016878177?text=Hola,%20tengo%20una%20pregunta%20sobre%20mi%20pedido%20de%20Senses%20Store" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp" style="font-size: 18px;"></i> ¿Alguna pregunta? Escríbenos a WhatsApp
+    </a>
 </div>
 
 <script>
